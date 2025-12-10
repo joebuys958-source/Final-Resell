@@ -8,7 +8,7 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import Inventory from "./pages/Inventory";
 import Expenses from "./pages/Expenses";
-import Analytics from "./pages/Analytics"; // ✅ ADDED
+import Goals from "./pages/Goals"; // ✅ NEW
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -28,33 +28,40 @@ export default function App() {
   return (
     <Router>
       <Routes>
+
+        {/* LOGIN */}
         <Route
           path="/"
           element={user ? <Navigate to="/dashboard" /> : <Login />}
         />
 
+        {/* SIGNUP */}
         <Route path="/signup" element={<Signup />} />
 
+        {/* DASHBOARD */}
         <Route
           path="/dashboard"
           element={user ? <Dashboard /> : <Navigate to="/" />}
         />
 
+        {/* INVENTORY */}
         <Route
           path="/inventory"
           element={user ? <Inventory /> : <Navigate to="/" />}
         />
 
+        {/* EXPENSES */}
         <Route
           path="/expenses"
           element={user ? <Expenses /> : <Navigate to="/" />}
         />
 
-        {/* ✅ ANALYTICS */}
+        {/* ✅ GOALS (NEW SECTION) */}
         <Route
-          path="/analytics"
-          element={user ? <Analytics /> : <Navigate to="/" />}
+          path="/goals"
+          element={user ? <Goals /> : <Navigate to="/" />}
         />
+
       </Routes>
     </Router>
   );

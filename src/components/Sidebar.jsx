@@ -1,4 +1,11 @@
-import { FaHome, FaBox, FaChartBar, FaCog, FaMoneyBill } from "react-icons/fa";
+import {
+  FaHome,
+  FaBox,
+  FaChartBar,
+  FaMoneyBill,
+  FaBullseye,
+  FaCog
+} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 export default function Sidebar() {
@@ -20,7 +27,11 @@ export default function Sidebar() {
         <FaMoneyBill /> Expenses
       </div>
 
-      {/* ✅ ANALYTICS FIXED */}
+      {/* ✅ NEW GOALS LINK */}
+      <div style={styles.link} onClick={() => nav("/goals")}>
+        <FaBullseye /> Goals
+      </div>
+
       <div style={styles.link} onClick={() => nav("/analytics")}>
         <FaChartBar /> Analytics
       </div>
