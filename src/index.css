@@ -1,36 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-
 * {
   box-sizing: border-box;
-  font-family: "Inter", sans-serif;
 }
 
 body {
   margin: 0;
-  background: radial-gradient(circle at top, #0ff 0%, #020617 40%);
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #050b14, #0b1a2a);
   color: white;
-  min-height: 100vh;
 }
 
-/* Glass effect */
+/* Cyber glass effect */
 .glass {
   background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 16px;
 }
 
-/* Buttons */
+/* Universal button */
 .btn {
-  padding: 12px 16px;
+  padding: 10px 16px;
+  border-radius: 8px;
   border: none;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #00ffff, #3b82f6);
+  background: linear-gradient(135deg, #00f0ff, #0a6cff);
   color: black;
-  font-weight: 600;
+  font-weight: bold;
   cursor: pointer;
 }
 
 .btn:hover {
   opacity: 0.9;
+}
+
+/* Inputs */
+input {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
 }
