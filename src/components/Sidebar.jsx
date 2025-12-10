@@ -16,12 +16,12 @@ export default function Sidebar() {
         <FaBox /> Inventory
       </div>
 
-      {/* ✅ EXPENSES LINK */}
       <div style={styles.link} onClick={() => nav("/expenses")}>
         <FaMoneyBill /> Expenses
       </div>
 
-      <div style={styles.link}>
+      {/* ✅ ANALYTICS FIXED */}
+      <div style={styles.link} onClick={() => nav("/analytics")}>
         <FaChartBar /> Analytics
       </div>
 
