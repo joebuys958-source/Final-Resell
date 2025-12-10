@@ -8,6 +8,7 @@ import {
   updateDoc
 } from "firebase/firestore";
 import { auth, db } from "../firebase";
+import Layout from "../components/Layout";
 
 export default function Inventory() {
   const [items, setItems] = useState([]);
@@ -19,7 +20,6 @@ export default function Inventory() {
   const fetchItems = async () => {
     const snap = await getDocs(collection(db, "inventory"));
     const data = [];
-
     snap.forEach((d) => data.push({ id: d.id, ...d.data() }));
 
     const myItems = data.filter(
@@ -52,7 +52,6 @@ export default function Inventory() {
     setBrand("");
     setCost("");
     setPrice("");
-
     fetchItems();
   };
 
@@ -65,67 +64,31 @@ export default function Inventory() {
     await updateDoc(doc(db, "inventory", id), {
       status: "Sold"
     });
-
     fetchItems();
   };
 
   return (
-    <div style={{ padding: 30 }}>
+    <Layout>
       <h1>Inventory</h1>
 
-      {/* ADD ITEM FORM */}
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-        <input
-          placeholder="Item name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-
-        <input
-          placeholder="Brand"
-          value={brand}
-          onChange={(e) => setBrand(e.target.value)}
-        />
-
-        <input
-          placeholder="Cost £"
-          value={cost}
-          onChange={(e) => setCost(e.target.value)}
-        />
-
-        <input
-          placeholder="Sale £"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-
-        <button className="btn" onClick={addItem}>
-          Add Item
-        </button>
+        <input placeholder="Item name" value={name} onChange={(e) => setName(e.target.value)} />
+        <input placeholder="Brand" value={brand} onChange={(e) => setBrand(e.target.value)} />
+        <input placeholder="Cost £" value={cost} onChange={(e) => setCost(e.target.value)} />
+        <input placeholder="Sale £" value={price} onChange={(e) => setPrice(e.target.value)} />
+        <button className="btn" onClick={addItem}>Add</button>
       </div>
 
-      {/* ITEM LIST */}
       <div style={{ marginTop: 30 }}>
-        {items.length === 0 && <p>No items yet</p>}
-
         {items.map((item) => (
-          <div
-            key={item.id}
-            className="glass"
-            style={{ padding: 15, marginBottom: 12 }}
-          >
-            <b>{item.name}</b> ({item.brand})
-            <br />
-            Cost: £{item.cost} | Sale: £{item.price} | Profit: £{item.profit}
-            <br />
+          <div key={item.id} className="glass" style={{ padding: 15, marginBottom: 12 }}>
+            <b>{item.name}</b> ({item.brand}) <br />
+            Cost: £{item.cost} | Sale: £{item.price} | Profit: £{item.profit} <br />
             Status: {item.status}
 
             <div style={{ marginTop: 10 }}>
               {item.status === "In Stock" && (
-                <button
-                  style={{ marginRight: 10 }}
-                  onClick={() => markAsSold(item.id)}
-                >
+                <button style={{ marginRight: 10 }} onClick={() => markAsSold(item.id)}>
                   Mark as Sold
                 </button>
               )}
@@ -135,6 +98,6 @@ export default function Inventory() {
           </div>
         ))}
       </div>
-    </div>
+    </Layout>
   );
 }
